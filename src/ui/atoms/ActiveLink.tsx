@@ -10,7 +10,7 @@ export type ActiveLinkProps<T extends string> = {
 	href: Route<T>;
 	children: React.ReactNode;
 	activeClassName: string;
-	className: string;
+	className?: string;
 	exact?: boolean;
 };
 
@@ -19,7 +19,7 @@ export function ActiveLink<T extends string>({
 	href,
 	exact,
 	activeClassName,
-	className,
+	className = "",
 }: ActiveLinkProps<T>) {
 	const pathname = usePathname();
 	const isActive = useMemo(() => {
