@@ -1,15 +1,24 @@
+import { notFound } from "next/navigation";
+import { getProduct } from "@/api/productsApi";
+import { ProductSingle } from "@/ui/molecules/ProductSingle";
+
 type Props = {
 	params: {
 		productId: string;
 	};
 };
 
-const SingleProductPage = ({ params }: Props) => {
+const SingleProductPage = async ({ params }: Props) => {
 	const { productId } = params;
+	const product = await getProduct(productId);
+
+	if (!product) {
+		return notFound();
+	}
 
 	return (
-		<main className="flex min-h-screen w-full justify-center p-16">
-			<h1 className="text-3xl font-bold">Product {productId}</h1>
+		<main className="flex w-full flex-col items-center p-16">
+			<ProductSingle product={product} />
 		</main>
 	);
 };

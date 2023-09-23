@@ -7,7 +7,7 @@ type Props = {
 	className: string;
 };
 
-export const ProductDescription = ({ product: { name, price }, className }: Props) => (
+export const ProductListItemDescription = ({ product: { name, price }, className }: Props) => (
 	<div className={clsx("text-black", className)}>
 		<h3 className="text-sm">{name}</h3>
 		<div className="text-xs font-bold">{formatPrice(price)}</div>
