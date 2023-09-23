@@ -1,17 +1,23 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
+import { type Route } from "next";
 
-type Props = {
-	href: string;
+export type ActiveLinkProps<T extends string> = {
+	href: Route<T>;
 	children: React.ReactNode;
 	activeClassName: string;
 	className: string;
 };
 
-export const ActiveLink = ({ children, href, activeClassName, className }: Props) => {
+export function ActiveLink<T extends string>({
+	children,
+	href,
+	activeClassName,
+	className,
+}: ActiveLinkProps<T>) {
 	const pathname = usePathname();
 	const isActive = pathname === href;
 
@@ -24,4 +30,4 @@ export const ActiveLink = ({ children, href, activeClassName, className }: Props
 			{children}
 		</Link>
 	);
-};
+}

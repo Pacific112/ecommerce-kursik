@@ -1,11 +1,8 @@
-import { ActiveLink } from "@/ui/atoms/ActiveLink";
+import { ActiveLink, type ActiveLinkProps } from "@/ui/atoms/ActiveLink";
 
-type Props = {
-	href: string;
-	children: React.ReactNode;
-};
+type Props<T extends string> = Pick<ActiveLinkProps<T>, "href" | "children">;
 
-export const NavLink = ({ children, href }: Props) => {
+export function NavLink<T extends string>({ children, href }: Props<T>) {
 	return (
 		<li>
 			<ActiveLink href={href} activeClassName="text-green-500" className="underline">
@@ -13,4 +10,4 @@ export const NavLink = ({ children, href }: Props) => {
 			</ActiveLink>
 		</li>
 	);
-};
+}
