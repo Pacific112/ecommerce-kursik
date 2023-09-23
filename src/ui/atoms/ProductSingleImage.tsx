@@ -5,7 +5,7 @@ type Props = {
 };
 
 export const ProductSingleImage = ({ image }: Props) => {
-	return <div className="flex items-center justify-center bg-gray-200">
+	return <div className="flex items-center justify-center">
 		<img src={image.src} alt={image.alt} />
 	</div>;
 };

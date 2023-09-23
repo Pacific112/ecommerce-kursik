@@ -1,77 +1,16 @@
+import { fetch } from "next/dist/compiled/@edge-runtime/primitives";
 import { type Product } from "@/ui/types/product";
+import { mapProductResponseToProduct, type ProductsResponse } from "@/api/productResponses";
 
-const products: Product[] = [
-	{
-		id: "1",
-		name: "Headphones",
-		description: "These are the best headphones in the world.",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "2",
-		name: "Headphones 2",
-		description: "These are second best headphones in the world.",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 2",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "3",
-		name: "Headphones 3",
-		description: "These are third best headphones in the world.",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 3",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "4",
-		name: "Headphones 4",
-		description: "These are fourth best headphones in the world.",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 4",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "5",
-		name: "Headphones 5",
-		description: "These are fifth best headphones in the world.",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 5",
-			src: "/headphones.png",
-		},
-	},
-];
+const API_URL = "https://naszsklep-api.vercel.app/api/products?take=20";
 
-export const getProducts = (): Promise<Product[]> => {
-	return new Promise((resolve) => resolve(products));
+export const getProducts = async (): Promise<Product[]> => {
+	const response = await fetch(API_URL);
+	const jsonResponse = (await response.json()) as ProductsResponse;
+
+	return jsonResponse.map(mapProductResponseToProduct);
 };
 
-export const getProduct = (id: string): Promise<Product | undefined> => {
-	return new Promise((resolve) => resolve(products.find((p) => p.id === id)));
+export const getProduct = async (id: string): Promise<Product | undefined> => {
+	return (await getProducts()).find((product) => product.id === id);
 };
