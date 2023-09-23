@@ -9,7 +9,7 @@ export const ProductsPagination = ({ currentPage, isLastPage }: Props) => {
 	const isFirstPage = currentPage === 1;
 
 	return (
-		<nav>
+		<nav aria-label="pagination">
 			<ul className="flex flex-row gap-3">
 				{!isFirstPage && (
 					<>
