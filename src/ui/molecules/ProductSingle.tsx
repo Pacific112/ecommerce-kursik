@@ -8,7 +8,7 @@ type Props = {
 
 export const ProductSingle = ({ product }: Props) => {
 	return (
-		<div className="grid grid-rows-2 gap-4 md:grid-cols-2 md:gap-16">
+		<div className="grid grid-cols-none grid-rows-2 gap-4 md:grid-cols-2 md:grid-rows-none md:gap-16">
 			<ProductSingleImage image={product.thumbnail} />
 			<ProductSingleDetails product={product} />
 		</div>
