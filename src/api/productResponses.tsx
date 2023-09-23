@@ -5,7 +5,7 @@ type RatingResponse = {
 	count: number;
 };
 
-type ProductResponse = {
+export type ProductResponse = {
 	id: string;
 	title: string;
 	price: number;
