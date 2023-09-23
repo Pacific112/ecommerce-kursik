@@ -1,73 +1,15 @@
-import { type Product } from "@/ui/types/product";
-import { ProductList } from "@/ui/organisms/ProductList";
-
-const producs: Product[] = [
-	{
-		id: "1",
-		name: "Headphones",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "2",
-		name: "Headphones 2",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 2",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "3",
-		name: "Headphones 3",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 3",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "4",
-		name: "Headphones 4",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 4",
-			src: "/headphones.png",
-		},
-	},
-	{
-		id: "5",
-		name: "Headphones 5",
-		price: {
-			currency: "USD",
-			cents: 99.99,
-		},
-		thumbnail: {
-			alt: "Headphones 5",
-			src: "/headphones.png",
-		},
-	},
-];
+import Link from "next/link";
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<ProductList products={producs} />
+		<main className="flex min-h-screen flex-col items-center p-24">
+			<h1 className="text-3xl font-bold">Welcome to my shop!</h1>
+			<Link
+				href={"/products"}
+				className="mt-4 w-full max-w-xl rounded-lg bg-emerald-500 py-2 text-center font-bold text-white"
+			>
+				Search for headphones!
+			</Link>
 		</main>
 	);
 }
