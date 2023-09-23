@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const ProductListItem = ({ product }: Props) => (
-	<Link href={`/products/${product.id}`}>
+	<Link href={`/product/${product.id}`}>
 		<article className="rounded-2xl border bg-white px-2 py-3 shadow hover:shadow-lg">
 			<ProductListItemImage image={product.thumbnail} />
 			<ProductListItemDescription product={product} className="mt-3" />
