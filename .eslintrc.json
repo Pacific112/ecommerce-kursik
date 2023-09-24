@@ -46,6 +46,10 @@
 		"import/namespace": ["off"],
 		// we allow empty interfaces
 		"no-empty-pattern": "off",
+		"no-restricted-imports": ["error", {
+			"name": "next/router",
+			"message": "Please use `next/navigation` instead."
+		}],
 		"@typescript-eslint/no-empty-interface": "off",
 		// we allow empty functions
 		"@typescript-eslint/no-empty-function": "off",
