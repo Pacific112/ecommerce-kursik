@@ -3,7 +3,7 @@ import { type Product } from "@/ui/types/product";
 import { mapProductResponseToProduct, type ProductsResponse } from "@/api/productResponses";
 
 const API_ROOT_URL = "https://naszsklep-api.vercel.app";
-const DEFAULT_PAGE_SIZE = 20;
+const DEFAULT_PAGE_SIZE = 8;
 
 type ProductsSearchParams = {
 	pageSize: number;
@@ -39,6 +39,15 @@ export const getProducts = async (pageNumber: number) => {
 		},
 	};
 };
+
+export const getProductPageCount = async () => {
+	const productsUrl = buildProductsUrl({ pageSize: 10_000, pageNumber: 0 });
+	const response = await fetch(productsUrl);
+
+	const jsonResponse = (await response.json()) as ProductsResponse;
+
+	return Math.ceil(jsonResponse.length / DEFAULT_PAGE_SIZE)
+}
 
 export const getProduct = (id: string): Promise<Product | undefined> => {
 	return fetch(buildProductUrl(id))

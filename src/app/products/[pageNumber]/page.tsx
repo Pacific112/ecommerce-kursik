@@ -1,11 +1,22 @@
 import { type Metadata } from "next";
 import { ProductList } from "@/ui/organisms/ProductList";
-import { getProducts } from "@/api/productsApi";
+import { getProductPageCount, getProducts } from "@/api/productsApi";
 
 export const metadata: Metadata = {
 	title: "Products",
 	description: "Page with all products",
 };
+
+export async function generateStaticParams(): Promise<{ pageNumber: string }[]> {
+	const pageCount = await getProductPageCount();
+
+	const params = [];
+	for (let pageNumber = 1; pageNumber <= pageCount; pageNumber++) {
+		params.push({ pageNumber: pageNumber.toString() });
+	}
+
+	return params;
+}
 
 const ProductsPage = async ({ params }: { params: { pageNumber: string } }) => {
 	const { pageNumber: pageNumberParam } = params;
